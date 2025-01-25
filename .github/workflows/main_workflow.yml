@@ -20,5 +20,7 @@ jobs:
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-    - name: Run main.py
-      run: python main.py
+    - name: Run Flask app
+      run: |
+        pip install gunicorn
+        gunicorn -w 4 -b 0.0.0.0:8000 main:app
